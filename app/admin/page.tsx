@@ -6,6 +6,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { useAauth } from "@/utils/state";
 import { useState } from "react";
 import { AdminSignModal } from "@/components/modal";
+import Loader from "@/components/loader";
+import Link from "next/link";
 
 let initialState = {
   message: "",
@@ -140,8 +142,9 @@ export default function Page() {
             disabled={pending}
             className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
           >
-            Sign in
+            {pending?(<Loader/>):'Sign in'}
           </button>
+          <Link href={"/admin/resetpswd"} className="text-sm text-indigo-400">forget password?</Link>
         </form>
       </div>
       <AdminSignModal isModalOpen={close} handleCloseModal={()=>{

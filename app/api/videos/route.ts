@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 
-
 export async function GET(request:Request) {
     
     const token = cookies().get("token");
@@ -16,15 +15,18 @@ export async function GET(request:Request) {
     return Response.json(res)
 }
 
-export async function DELETE(request:Request){
-   const {id}= await request.json()
-   
-     try {
-       const video = await prisma.video.delete({where:{id:id}}) 
-       await utapi.deleteFiles(video.key)
-       return Response.json({message:'valid'})
-     } catch (error) {
-        return Response.json({message:'invalid'})
-     }
 
+export async function DELETE(req: Request) {
+  try {
+    const { id } = await req.json();
+    const newId= parseInt(id)
+    const video = await prisma.video.delete({
+      where: { id:newId },
+    });
+    await utapi.deleteFiles(video.key);
+    return NextResponse.json({ message: "valid" });
+  } catch (error) {
+    console.error("Error deleting video:", error);
+    return NextResponse.json({ message: "invalid" }, { status: 500 });
+  }
 }

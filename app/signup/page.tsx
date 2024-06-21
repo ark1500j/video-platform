@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { signupAction } from "../actions";
 import toast, { Toaster } from "react-hot-toast";
+import Loader from "@/components/loader";
 
 let initialState = {
   message: '',
@@ -133,7 +134,7 @@ const SignUpForm = () => {
                       disabled={pending}
                       className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-indigo-500 rounded-lg transition duration-200 hover:bg-indigo-600 ease"
                     >
-                      Sign up
+                      {pending?(<Loader/>):'Sign In'}
                     </button>
                   </div>
                 </div>

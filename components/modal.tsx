@@ -184,6 +184,9 @@ const SignInModal = ({ isModalOpen, handleCloseModal }: Props) => {
             <div className="pt-6 text-sm text-neutral-400">
               a verifyication code has been sent to this email
             </div>
+            {/* <div className="pt-2 text-sm text-neutral-400">
+              Did not recieve email <span className="cursor-pointer">resend</span>
+            </div> */}
           </div>
         </div>
       </div>
@@ -268,6 +271,9 @@ function AdminSignModal({ isModalOpen, handleCloseModal }: Props) {
               <div className="text-neutral-400">
                 a verifyication code has been sent to your email
               </div>
+              {/* <div className="pt-2 text-sm text-neutral-400">
+              Did not recieve email <span className="cursor-pointer">resend</span>
+            </div> */}
             </div>
           </div>
         </div>

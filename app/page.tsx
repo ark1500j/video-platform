@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { signInAction } from "./actions";
 import toast, { Toaster } from "react-hot-toast";
+import Loader from "@/components/loader";
 
 let initialState = {
   message: "",
@@ -18,8 +19,7 @@ const Page = () => {
   const [login, setLogin] = useLauth();
   const [formState, formAction] = useFormState(signInAction, initialState);
   const { pending } = useFormStatus();
-  console.log(pending)
-
+  
   useEffect(() => {
     if (formState.message === "valid") {
       setClose(true);
@@ -120,7 +120,7 @@ const Page = () => {
                     className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-indigo-500 rounded-lg transition duration-200 hover:bg-indigo-600 ease"
                     disabled={pending}
                   >
-                    Sign In
+                    {pending?(<Loader/>):'Sign In'}
                   </button>
                   <div className="text-sm p-2 mt-2">
                     <a

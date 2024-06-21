@@ -27,9 +27,10 @@ export default function Card({ url, type, title, id }: Props) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: id }),
+      body: JSON.stringify({ id }),
     });
     const response = await res.json();
+    console.log(response)
     if (response?.message === "valid") {
       mutate("/api/videos");
     }

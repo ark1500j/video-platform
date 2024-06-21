@@ -9,8 +9,6 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     const currentVideo = await prisma.video.findUnique({
       where: { id: videoId },
     });
-    console.log(currentVideo);
-
     if (!currentVideo) {
       return NextResponse.json({ error: 'Video not found' }, { status: 404 });
     }

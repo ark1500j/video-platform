@@ -2,7 +2,7 @@
 import { Navbar } from "@/components/navbar";
 import { ChevronLeft, ChevronRight, Share2Icon } from "lucide-react";
 import useSWR from "swr";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,17 +14,10 @@ import {
 import {
   FacebookIcon,
   FacebookShareButton,
-  FacebookShareCount,
-  HatenaShareCount,
-  OKShareCount,
-  PinterestShareCount,
-  RedditShareCount,
   TelegramIcon,
   TelegramShareButton,
-  TumblrShareCount,
   TwitterIcon,
   TwitterShareButton,
-  VKShareCount,
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
@@ -64,7 +57,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const router = useRouter();
 
-  if (isLoading) return <div>Loading...</div>;
   if (error) {
     if (error.message === "Not Found") {
       return <div>Video not found</div>;
@@ -91,6 +83,23 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <>
       <Navbar />
+      {isLoading && (
+        <div className="flex min-h-screen items-center justify-center">
+          <div className="w-1/3">
+            <div className="max-w-full rounded overflow-hidden shadow-lg animate-pulse">
+              <div className="h-56 bg-gray-300"></div>
+              <div className="px-6 py-4">
+                <div className="h-6 bg-gray-300 mb-2"></div>
+                <div className="h-4 bg-gray-300 w-2/3"></div>
+              </div>
+              <div className="px-6 pt-4 pb-2">
+                <div className="h-4 bg-gray-300 w-1/4 mb-2"></div>
+                <div className="h-4 bg-gray-300 w-1/2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {currentVideo && (
         <main className="flex flex-col items-center w-screen pt-24 mx-auto">
           <div className="flex flex-grow justify-center items-center">
@@ -197,115 +206,3 @@ export default function Page({ params }: { params: { slug: string } }) {
     </>
   );
 }
-// import { Button } from "@/components/ui/button"
-// import { Input } from "@/components/ui/input"
-// import { Label } from "@/components/ui/label"
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from "@/components/ui/popover"
-
-// export function PopoverDemo() {
-//   return (
-//     <Popover>
-//       <PopoverTrigger asChild>
-//         <Button variant="outline">Open popover</Button>
-//       </PopoverTrigger>
-//       <PopoverContent className="w-80">
-//         <div className="grid gap-4">
-//           <div className="space-y-2">
-//             <h4 className="font-medium leading-none">Dimensions</h4>
-//             <p className="text-sm text-muted-foreground">
-//               Set the dimensions for the layer.
-//             </p>
-//           </div>
-//           <div className="grid gap-2">
-//             <div className="grid grid-cols-3 items-center gap-4">
-//               <Label htmlFor="width">Width</Label>
-//               <Input
-//                 id="width"
-//                 defaultValue="100%"
-//                 className="col-span-2 h-8"
-//               />
-//             </div>
-//             <div className="grid grid-cols-3 items-center gap-4">
-//               <Label htmlFor="maxWidth">Max. width</Label>
-//               <Input
-//                 id="maxWidth"
-//                 defaultValue="300px"
-//                 className="col-span-2 h-8"
-//               />
-//             </div>
-//             <div className="grid grid-cols-3 items-center gap-4">
-//               <Label htmlFor="height">Height</Label>
-//               <Input
-//                 id="height"
-//                 defaultValue="25px"
-//                 className="col-span-2 h-8"
-//               />
-//             </div>
-//             <div className="grid grid-cols-3 items-center gap-4">
-//               <Label htmlFor="maxHeight">Max. height</Label>
-//               <Input
-//                 id="maxHeight"
-//                 defaultValue="none"
-//                 className="col-span-2 h-8"
-//               />
-//             </div>
-//           </div>
-//         </div>
-//       </PopoverContent>
-//     </Popover>
-//   )
-// }
-
-// <>
-//   <div className="">
-//     <Navbar />
-//   </div>
-
-//   {currentVideo && (
-//     <div className="flex justify-between gap-10 pt-24">
-//       <div className="w-full flex flex-col ">
-//         <div className="flex">
-// {previousVideo && (
-//   <div
-//     className="text-neutral-400 opacity-0 duration-500 hover:opacity-100 cursor-pointer self-stretch flex items-center justify-center"
-//     onClick={handlePrevious}
-//   >
-//     <ChevronLeft size={50} />
-//   </div>
-// )}
-//           <video
-//             className="rounded-lg outline sm:outline-offset-8 outline-[#F3F4F6] outline-none sm:h-96 h-64"
-//             controls
-//           >
-//             <source src={currentVideo.url} type={currentVideo.type} />
-//           </video>
-//           {nextVideo && (
-//             <div
-//               className="text-neutral-400 opacity-0 duration-500 hover:opacity-100 cursor-pointer self-stretch flex items-center justify-center"
-//               onClick={handleNext}
-//             >
-//               <ChevronRight size={50} />
-//             </div>
-//           )}
-//         </div>
-//         <div className="ml-12 flex justify-between items-center">
-//           <div className="">
-//             <div className="mt-2 p-2 font-semibold text-xl">
-//               {currentVideo.title}
-//             </div>
-//             <div className="mt-2 p-2  flex flex-wrap outline-none rounded-sm">
-//               {currentVideo.description}
-//             </div>
-//           </div>
-//           <div className="self-stretch mt-4">
-//             share
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )}
-// </>
