@@ -18,6 +18,7 @@ const Page = () => {
   const [login, setLogin] = useLauth();
   const [formState, formAction] = useFormState(signInAction, initialState);
   const { pending } = useFormStatus();
+  console.log(pending)
 
   useEffect(() => {
     if (formState.message === "valid") {

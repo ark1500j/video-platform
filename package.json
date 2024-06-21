@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@prisma/client": "^5.15.0",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-popover": "^1.1.0",
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/bcrypt": "^5.0.2",
@@ -24,10 +26,13 @@
     "jotai": "^2.8.3",
     "lucide-react": "^0.379.0",
     "next": "14.2.3",
+    "nextjs-current-url": "^1.0.1",
     "nodemailer": "^6.9.13",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-share": "^5.1.0",
+    "swr": "^2.2.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.12.0"

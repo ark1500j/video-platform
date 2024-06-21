@@ -10,30 +10,32 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-
-model Users{
-  id  String @id  @default(uuid()) @unique
-  username  String
-  email String @unique
-  password String
-  otp String?
-}
-
-model Admin{
-  id String @id @default(uuid()) @unique
+model Users {
+  id       String  @id @unique @default(uuid())
   username String
-  email String @unique
+  email    String  @unique
   password String
-  otp String?
-  videos    Video[]   @relation("AdminVideos")
+  otp      String?
 }
 
-model Video{
-  id Int @id @default(autoincrement()) @unique
-  video_id String 
-  createdAt DateTime  @default(now())
-  link String
-  title String
-  discription String
-  admin  Admin  @relation("AdminVideos", fields: [video_id], references: [id])
+model Admin {
+  id       String  @id @unique @default(uuid())
+  username String @unique 
+  email    String  @unique
+  password String
+  otp      String?
+  videos   Video[] @relation("AdminVideos")
+}
+
+model Video {
+  id          Int      @id @unique @default(autoincrement())
+  url         String
+  key         String
+  name        String
+  type        String
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  admin       Admin    @relation("AdminVideos", fields: [admin_id], references: [id])
+  admin_id    String 
 }

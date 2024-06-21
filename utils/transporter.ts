@@ -1,4 +1,6 @@
 import { createTransport } from "nodemailer";
+import { UTApi } from "uploadthing/server";
+
 
  const transporter = createTransport({
     service: process.env.MAIL_SERVICE,
@@ -8,4 +10,9 @@ import { createTransport } from "nodemailer";
     }
    })
 
-   export {transporter};
+const utapi = new UTApi();
+
+
+
+
+export {transporter, utapi};

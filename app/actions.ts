@@ -3,8 +3,8 @@
 import { prisma } from "@/utils/dbclient";
 import { GenerateNumericOTP } from "@/utils/generateopt";
 import { hashPassword } from "@/utils/hash";
-import { transporter } from "@/utils/transporter";
-import { SignJWT } from "jose";
+import { transporter, utapi } from "@/utils/transporter";
+import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { compare } from "bcrypt";
 import { redirect } from "next/dist/server/api-utils";
@@ -51,7 +51,7 @@ export async function signupAction(prev: any, formdata: FormData) {
   if (user) return { message: "exist" };
 
   const otp = GenerateNumericOTP();
-   await prisma.users.create({
+  await prisma.users.create({
     data: {
       email: email,
       password: password,
@@ -92,7 +92,6 @@ export async function otpVerifyAction(otp: string, email: string) {
   return { message: "valid" };
 }
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////Adimin Actions
 export async function adminSignIn(prev: any, formdata: FormData) {
@@ -100,7 +99,7 @@ export async function adminSignIn(prev: any, formdata: FormData) {
   const password = formdata.get("password") as string;
 
   const admin = await prisma.admin.findUnique({
-    where: { email: email},
+    where: { email: email },
   });
   if (!admin) return { message: "invalid" };
 
@@ -115,7 +114,7 @@ export async function adminSignIn(prev: any, formdata: FormData) {
       otp: otp,
     },
   });
-        // .then(async () => {
+  // .then(async () => {
   //   await transporter.sendMail({
   //     from: '"NewTube" <blinder1500j@gmail.com>',
   //     to: email,
@@ -123,31 +122,63 @@ export async function adminSignIn(prev: any, formdata: FormData) {
   //     html: `${otp}`,
   //   });
   // });
-return {message:'valid'}
+  return { message: "valid" };
 }
 
-export async function OtpAdmin(otp:string,email:string) {
-  
-    const admin= await prisma.admin.findUnique({where:{ email:email,otp:otp}})
-    
-    if(!admin) return {message:'invalid'}
+export async function OtpAdmin(otp: string, email: string) {
+  const admin = await prisma.admin.findUnique({
+    where: { email: email, otp: otp },
+  });
 
-    const secretKey = new TextEncoder().encode(process.env.JWT_SECRET);
-    const token = await new SignJWT({ ...admin, role: "admin" })
+  if (!admin) return { message: "invalid" };
+
+  const secretKey = new TextEncoder().encode(process.env.JWT_SECRET);
+  const token = await new SignJWT({ ...admin, role: "admin" })
     .setProtectedHeader({ alg: "HS256" })
     .setExpirationTime("1 day")
     .sign(secretKey);
-    cookies().set({
-      name: "token",
-      value: token, 
-      secure: true,
-      httpOnly: true,
-    });
+  cookies().set({
+    name: "token",
+    value: token,
+    secure: true,
+    httpOnly: true,
+  });
 
-    return {message:'valid'}
-
+  return { message: "valid" };
 }
 
-export async function uploadVideoAction(formdata:FormData) {
-  return 'hello'
+export async function uploadVideoAction(formdata: FormData) {
+  const file = formdata.get("media") as File;
+  const title = formdata.get("title") as string;
+  const description = formdata.get("description") as string;
+
+
+  try {
+    const data = await utapi.uploadFiles(file);
+    console.log(data);
+    
+    const res = await prisma.video.create({
+      data: {
+        title: title,
+        description: description,
+        name: data.data?.name as string,
+        key: data.data?.key as string,
+        url: data.data?.url as string,
+        type: data.data?.type as string,
+        admin: {
+          connect: {
+            username: "admin",
+          },
+        },
+      },
+    });
+    
+    if (res) {
+      return { message: 'valid' };
+    }
+    return {message:'invalid'}
+  } catch (error) {
+    console.log(error);
+  } 
+    
 }

@@ -1,5 +1,4 @@
 import { jwtVerify } from "jose";
-import { redirect } from "next/dist/server/api-utils";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 

@@ -30,7 +30,7 @@ const SignUpModal = ({ isModalOpen, handleCloseModal }: Props) => {
         });
       }, 1000);
     } else if (res.message === "valid") {
-      router.push("/video/video");
+      router.push("/video");
       setAuth((prev) => {
         return { ...prev, otp: "", password: "", email: "", username: "" };
       });
@@ -117,7 +117,7 @@ const SignInModal = ({ isModalOpen, handleCloseModal }: Props) => {
         });
       }, 1000);
     } else if (res.message === "valid") {
-      router.push("/video/video");
+      router.push("/video");
       setTimeout(() => {
         setAuth((prev) => {
           return { ...prev, otp: "", password: "", email: "" };

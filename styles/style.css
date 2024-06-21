@@ -84,7 +84,7 @@ img {
   border-bottom-right-radius: 8px;
   background-color: rgba(255, 255, 255, 0.2);
   -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .header-navigation {
@@ -112,7 +112,8 @@ img {
 .header-navigation-links a + * {
   margin-left: 1.5rem;
 }
-.header-navigation-links a:hover, .header-navigation-links a:focus {
+.header-navigation-links a:hover,
+.header-navigation-links a:focus {
   color: var(--c-accent-primary);
 }
 
@@ -154,7 +155,8 @@ img {
 .button span {
   font-weight: 500;
 }
-.button:hover, .button:focus {
+.button:hover,
+.button:focus {
   border-color: var(--c-accent-primary);
   color: var(--c-accent-primary);
 }
@@ -175,7 +177,8 @@ img {
 .icon-button i {
   font-size: 1.25em;
 }
-.icon-button:focus, .icon-button:hover {
+.icon-button:focus,
+.icon-button:hover {
   background-color: var(--c-background-tertiary);
   color: var(--c-accent-primary);
 }
@@ -244,7 +247,8 @@ img {
 .search input::placeholder {
   color: var(--c-text-action);
 }
-.search input:focus, .search input:hover {
+.search input:focus,
+.search input:hover {
   border-color: var(--c-accent-primary);
 }
 .search button {
@@ -290,7 +294,9 @@ img {
   text-decoration: none;
   transition: 0.15s ease;
 }
-.horizontal-tabs a:hover, .horizontal-tabs a:focus, .horizontal-tabs a.active {
+.horizontal-tabs a:hover,
+.horizontal-tabs a:focus,
+.horizontal-tabs a.active {
   color: var(--c-accent-primary);
   border-bottom-color: var(--c-accent-primary);
 }
@@ -360,8 +366,10 @@ img {
   color: var(--c-text-action);
   transition: 0.15s ease;
 }
-.vertical-tabs a:hover, .vertical-tabs a:focus, .vertical-tabs a.active {
-  background-color: var(--c-background-tertiary);
+.vertical-tabs a:hover,
+.vertical-tabs a:focus,
+.vertical-tabs a.active {
+  background-color: rgba(197, 193, 193, 0.877);
   color: var(--c-accent-primary);
 }
 .vertical-tabs a + * {
@@ -378,7 +386,7 @@ img {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   -moz-column-gap: 1.5rem;
-       column-gap: 1.5rem;
+  column-gap: 1.5rem;
   row-gap: 1.5rem;
 }
 @media (min-width: 600px) {
@@ -453,7 +461,7 @@ img {
 .toggle input {
   clip: rect(0 0 0 0);
   -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
+  clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
   position: absolute;

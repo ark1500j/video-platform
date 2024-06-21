@@ -1,18 +1,16 @@
 'use client';
 
-import { useReset } from "@/utils/state";
-
 
 export default function Page() {
-  
-    const [reset, setReset] =useReset();
-    
+
+      
   return (
     <div className="flex items-center justify-center h-screen">
     <div className="mx-auto max-w-lg">
 
       <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
-        Please enter email for verifyication
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
+        sunt dolores deleniti inventore quaerat mollitia?
       </p>
 
       <form
@@ -22,6 +20,7 @@ export default function Page() {
         <p className="text-center text-lg font-medium">
           Reset password
         </p>
+
         <div>
           <label htmlFor="email" className="sr-only">
             Email
@@ -32,10 +31,10 @@ export default function Page() {
               required
               type="email"
               name="email"
-              value={reset.email}
-              onChange={(e)=>{setReset((prev)=>{
-                return {...prev,email:e.target.value}
-              })}}
+              // value={aauth.email}
+              // onChange={(e)=>{setAauth((prev)=>{
+              //   return {...prev,email:e.target.value}
+              // })}}
               className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter email"
             />
