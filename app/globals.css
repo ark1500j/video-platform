@@ -468,3 +468,34 @@
     background-color: transparent;
   }
 }
+
+.loader {
+  border: 2px solid rgba(0, 0, 0, .1);
+  border-left-color: transparent;
+  border-radius: 50%;
+}
+
+.loader {
+  border: 2px solid rgba(0, 0, 0, .1);
+  border-left-color: transparent;
+  width: 16px;
+  height: 16px;
+}
+
+.loader {
+  border: 2px solid rgba(255, 255, 255, 0.774);
+  border-left-color: transparent;
+  width: 16px;
+  height: 16px;
+  animation: spin89345 1s linear infinite;
+}
+
+@keyframes spin89345 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -4,14 +4,33 @@ import { useReset } from "@/utils/state";
 import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
+import { useFormStatus } from "react-dom";
 
 interface Props {
   role: string;
 }
+function Submit() {
+  const status = useFormStatus();
+  return (
+    <button
+      type="submit"
+      className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+      disabled={status.pending}
+    >
+      {status.pending ? (
+        <div className="flex items-center justify-center w-full">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        "Reset Password"
+      )}
+    </button>
+  );
+}
 
-export default function ResetFormCard({role}:Props) {
+export default function ResetFormCard({ role }: Props) {
   const [reset, setReset] = useReset();
-  const router= useRouter()
+  const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (
@@ -24,21 +43,21 @@ export default function ResetFormCard({role}:Props) {
         reset.otp,
         role
       );
-      if(res?.message ==='valid'){
-        toast.success('password changed sucessfully')
+      if (res?.message === "valid") {
+        toast.success("password changed sucessfully");
         setTimeout(() => {
-            setReset({email:'', otp:''})
-            if(role==="user"){
-                router.push("/")
-            }else{
-                router.push("/admin")
-            }
+          setReset({ email: "", otp: "" });
+          if (role === "user") {
+            router.push("/");
+          } else {
+            router.push("/admin");
+          }
         }, 1000);
-      } else if (res?.message==='invalid'){
-              toast.error('error changing password')
+      } else if (res?.message === "invalid") {
+        toast.error("error changing password");
       }
-    } else{
-        toast.error("password doesn't match")
+    } else {
+      toast.error("password doesn't match");
     }
   }
 
@@ -135,13 +154,7 @@ export default function ResetFormCard({role}:Props) {
               </span>
             </div>
           </div>
-
-          <button
-            type="submit"
-            className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
-          >
-            reset
-          </button>
+          <Submit />
         </form>
       </div>
     </div>

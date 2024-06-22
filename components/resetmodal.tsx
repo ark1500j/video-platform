@@ -12,11 +12,16 @@ import { useEffect } from "react";
 
 interface Props {
   isModalOpen?: boolean;
-  role:string
+  role: string;
   handleCloseModal: () => void;
   handleReset: () => void;
 }
-const ResetModal = ({ isModalOpen, handleCloseModal, handleReset,role }: Props) => {
+const ResetModal = ({
+  isModalOpen,
+  handleCloseModal,
+  handleReset,
+  role,
+}: Props) => {
   const [reset, setReset] = useReset();
 
   async function handleSubmit() {
@@ -57,7 +62,7 @@ const ResetModal = ({ isModalOpen, handleCloseModal, handleReset,role }: Props) 
           >
             <CircleX />
           </div>
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center h-full flex-col">
             <InputOTP
               maxLength={6}
               value={reset.otp}
@@ -77,7 +82,18 @@ const ResetModal = ({ isModalOpen, handleCloseModal, handleReset,role }: Props) 
                 <InputOTPSlot index={5} />
               </InputOTPGroup>
             </InputOTP>
+            <div className="text-center text-sm mt-4">
+              {reset.otp === "" ? (
+                <>Enter your one-time password.</>
+              ) : (
+                <>You entered: {reset.otp}</>
+              )}
+            </div>
+            <div className="pt-6 text-sm text-neutral-400">
+              a verifyication code has been sent to the email
+            </div>
           </div>
+
         </div>
       </div>
     </div>

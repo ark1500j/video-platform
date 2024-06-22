@@ -1,14 +1,13 @@
 "use server";
 
-import { prisma } from "@/utils/dbclient";
+import  {prisma}  from "@/utils/dbclient";
 import { GenerateNumericOTP } from "@/utils/generateopt";
 import { hashPassword } from "@/utils/hash";
 import { transporter, utapi } from "@/utils/transporter";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { compare } from "bcrypt";
-import { redirect } from "next/dist/server/api-utils";
-import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 //sever actions, which are essentially POST requests, i.e functions that run on the server
 export async function signInAction(prev: any, formdata: FormData) {
@@ -22,17 +21,19 @@ export async function signInAction(prev: any, formdata: FormData) {
   if (!passwordMatch) return { message: "invalid" };
 
   const otp = GenerateNumericOTP();
-  await prisma.users.update({
-    where: { email: email },
-    data: {
-      otp: otp,
-    },
-  }).then(async () => {
-    await transporter.sendMail({
-      from: '"NewTube" <blinder1500j@gmail.com>',
-      to: email,
-      subject: "NewTube OTP for login",
-      html: `
+  await prisma.users
+    .update({
+      where: { email: email },
+      data: {
+        otp: otp,
+      },
+    })
+    .then(async () => {
+      await transporter.sendMail({
+        from: '"NewTube" <blinder1500j@gmail.com>',
+        to: email,
+        subject: "NewTube OTP for login",
+        html: `
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -96,8 +97,8 @@ export async function signInAction(prev: any, formdata: FormData) {
       </body>
       </html>
     `,
+      });
     });
-  });
 
   return { message: "valid" };
 }
@@ -113,19 +114,21 @@ export async function signupAction(prev: any, formdata: FormData) {
   if (user) return { message: "exist" };
 
   const otp = GenerateNumericOTP();
-  await prisma.users.create({
-    data: {
-      email: email,
-      password: password,
-      username: username,
-      otp: otp,
-    },
-  }).then(async () => {
-    await transporter.sendMail({
-      from: '"NewTube" <blinder1500j@gmail.com>',
-      to: email,
-      subject: "NewTube OTP for sign up",
-      html:`
+  await prisma.users
+    .create({
+      data: {
+        email: email,
+        password: password,
+        username: username,
+        otp: otp,
+      },
+    })
+    .then(async () => {
+      await transporter.sendMail({
+        from: '"NewTube" <blinder1500j@gmail.com>',
+        to: email,
+        subject: "NewTube OTP for sign up",
+        html: `
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -189,8 +192,8 @@ export async function signupAction(prev: any, formdata: FormData) {
       </body>
       </html>
     `,
+      });
     });
-  });
   return { message: "valid" };
 }
 
@@ -232,17 +235,19 @@ export async function adminSignIn(prev: any, formdata: FormData) {
     return { message: "invalid" };
   }
   const otp = GenerateNumericOTP();
-  await prisma.admin.update({
-    where: { email: email },
-    data: {
-      otp: otp,
-    },
-  }).then(async () => {
-    await transporter.sendMail({
-      from: '"NewTube" <blinder1500j@gmail.com>',
-      to: email,
-      subject: "NewTube OTP for login",
-      html:`
+  await prisma.admin
+    .update({
+      where: { email: email },
+      data: {
+        otp: otp,
+      },
+    })
+    .then(async () => {
+      await transporter.sendMail({
+        from: '"NewTube" <blinder1500j@gmail.com>',
+        to: email,
+        subject: "NewTube OTP for login",
+        html: `
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -306,8 +311,8 @@ export async function adminSignIn(prev: any, formdata: FormData) {
       </body>
       </html>
     `,
+      });
     });
-  });
   return { message: "valid" };
 }
 
@@ -361,7 +366,7 @@ export async function uploadVideoAction(formdata: FormData) {
       return { message: "valid" };
     }
     return { message: "invalid" };
-  } catch (error) { }
+  } catch (error) {}
 }
 
 export async function verifyAction(email: string, role: string) {
@@ -377,6 +382,7 @@ export async function verifyAction(email: string, role: string) {
           where: { email: email },
           data: { otp: otp },
         });
+
         await transporter.sendMail({
           from: '"NewTube" <blinder1500j@gmail.com>',
           to: email,
@@ -462,11 +468,12 @@ export async function verifyAction(email: string, role: string) {
           where: { email: email },
           data: { otp: otp },
         });
-        await transporter.sendMail({
-          from: '"NewTube" <blinder1500j@gmail.com>',
-          to: email,
-          subject: "NewTube OTP for Reset Password",
-          html: `
+        await transporter
+          .sendMail({
+            from: '"NewTube" <blinder1500j@gmail.com>',
+            to: email,
+            subject: "NewTube OTP for Reset Password",
+            html: `
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -530,9 +537,10 @@ export async function verifyAction(email: string, role: string) {
       </body>
       </html>
     `,
-        }).catch(()=>{
-          return {message:'invalid'}
-        });
+          })
+          .catch(() => {
+            return { message: "invalid" };
+          });
 
         return { message: "valid" };
       } else {
@@ -557,9 +565,7 @@ export async function resetOtpVerify(email: string, otp: string, role: string) {
       } else {
         return { message: "invalid" };
       }
-
     } else if (role === "user") {
-
       const user = await prisma.users.findUnique({ where: { email } });
 
       if (user && user.otp === otp) {
@@ -567,7 +573,6 @@ export async function resetOtpVerify(email: string, otp: string, role: string) {
       } else {
         return { message: "invalid" };
       }
-
     } else {
       return { message: "invalid" };
     }
@@ -620,4 +625,10 @@ export async function changePasswordAction(
     console.error("Error updating password:", error);
     return { message: "Failed to update password" };
   }
+}
+
+export async function LogoutAction() {
+ 
+  cookies().delete('token')
+  redirect("/");
 }

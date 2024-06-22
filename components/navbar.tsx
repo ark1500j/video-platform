@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Youtube } from "lucide-react"
+import { LogoutAction } from "@/app/actions";
 export const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
   return (
@@ -62,12 +63,16 @@ export const Navbar = () => {
             >
               About
             </a>
-            <a
+            <button
               className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-              href="#"
+              
+              onClick={async()=>{
+                 await LogoutAction();
+              }}
+              
             >
-              Contact
-            </a>
+              Logout
+            </button>
           </nav>
         </div>
       </div>

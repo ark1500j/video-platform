@@ -12,28 +12,46 @@ import Link from "next/link";
 let initialState = {
   message: "",
 };
+
+function Submit() {
+  const status = useFormStatus();
+  return (
+    <button
+      type="submit"
+      disabled={status.pending}
+      className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+    >
+      {status.pending ? (
+        <div className="flex items-center justify-center w-full">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        "Sign in"
+      )}
+    </button>
+  );
+}
 export default function Page() {
   const [formState, formAction] = useFormState(adminSignIn, initialState);
-   const[aauth,setAauth]= useAauth();
-   const [close, setClose] = useState(false);
+  const [aauth, setAauth] = useAauth();
+  const [close, setClose] = useState(false);
   const { pending } = useFormStatus();
 
-  
-  useEffect(()=>{
-    if(formState?.message==='valid'){
-       setClose(true)
-    }else if(formState?.message==='invalid'){
-      toast.error('invalid credential, Please try again')
+  useEffect(() => {
+    if (formState?.message === "valid") {
+      setClose(true);
+    } else if (formState?.message === "invalid") {
+      toast.error("invalid credential, Please try again");
     }
-    return ()=>{
-      setAauth((prev)=>{
-        return {...prev,password:''}
-       })
-      formState.message=''
-    }
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[formState])
+    return () => {
+      setAauth((prev) => {
+        return { ...prev, password: "" };
+      });
+      formState.message = "";
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formState]);
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -66,9 +84,11 @@ export default function Page() {
                 type="email"
                 name="email"
                 value={aauth.email}
-                onChange={(e)=>{setAauth((prev)=>{
-                  return {...prev,email:e.target.value}
-                })}}
+                onChange={(e) => {
+                  setAauth((prev) => {
+                    return { ...prev, email: e.target.value };
+                  });
+                }}
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter email"
               />
@@ -103,10 +123,10 @@ export default function Page() {
                 type="password"
                 name="password"
                 value={aauth.password}
-                onChange={(e)=>{
-                       setAauth((prev)=>{
-                        return {...prev,password:e.target.value}
-                       })
+                onChange={(e) => {
+                  setAauth((prev) => {
+                    return { ...prev, password: e.target.value };
+                  });
                 }}
                 className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter password"
@@ -137,20 +157,19 @@ export default function Page() {
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={pending}
-            className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
-          >
-            {pending?(<Loader/>):'Sign in'}
-          </button>
-          <Link href={"/admin/resetpswd"} className="text-sm text-indigo-400">forget password?</Link>
+         <Submit/>
+          <Link href={"/admin/resetpswd"} className="text-sm text-indigo-400">
+            forget password?
+          </Link>
         </form>
       </div>
-      <AdminSignModal isModalOpen={close} handleCloseModal={()=>{
-        setClose(false)
-      }} />
-      <Toaster/>
+      <AdminSignModal
+        isModalOpen={close}
+        handleCloseModal={() => {
+          setClose(false);
+        }}
+      />
+      <Toaster />
     </div>
   );
 }

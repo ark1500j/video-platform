@@ -14,17 +14,36 @@ let initialState = {
   message: "",
 };
 
+function Submit() {
+  const status = useFormStatus();
+  return (
+    <button
+      type="submit"
+      className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-indigo-500 rounded-lg transition duration-200 hover:bg-indigo-600 ease"
+      disabled={status.pending}
+    >
+      {status.pending ? (
+        <div className="flex items-center justify-center w-full">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        "Sign In"
+      )}
+    </button>
+  );
+}
+
 const Page = () => {
   const [close, setClose] = useState(false);
   const [login, setLogin] = useLauth();
   const [formState, formAction] = useFormState(signInAction, initialState);
-  const { pending } = useFormStatus();
-  
+
+
   useEffect(() => {
     if (formState.message === "valid") {
       setClose(true);
     } else if (formState.message === "invalid") {
-      toast.error('wrong credentials,please try again')
+      toast.error("wrong credentials,please try again");
       setLogin((prev) => {
         return { ...prev, email: "", password: "" };
       });
@@ -115,13 +134,7 @@ const Page = () => {
                   />
                 </div>
                 <div className="relative">
-                  <button
-                    type="submit"
-                    className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-indigo-500 rounded-lg transition duration-200 hover:bg-indigo-600 ease"
-                    disabled={pending}
-                  >
-                    {pending?(<Loader/>):'Sign In'}
-                  </button>
+                 <Submit/>
                   <div className="text-sm p-2 mt-2">
                     <a
                       href="/resetpswd"

@@ -90,6 +90,9 @@ const SignUpModal = ({ isModalOpen, handleCloseModal }: Props) => {
                 ) : (
                   <>You entered: {auth.otp}</>
                 )}
+                              <div className="text-neutral-400">
+                a verifyication code has been sent to your email
+              </div>
               </div>
             </div>
           </div>

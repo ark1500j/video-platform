@@ -11,8 +11,26 @@ import toast, { Toaster } from "react-hot-toast";
 import Loader from "@/components/loader";
 
 let initialState = {
-  message: '',
+  message: "",
 };
+function Submit() {
+  const status = useFormStatus();
+  return (
+    <button
+      type="submit"
+      className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-indigo-500 rounded-lg transition duration-200 hover:bg-indigo-600 ease"
+      disabled={status.pending}
+    >
+      {status.pending ? (
+        <div className="flex items-center justify-center w-full">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        "Sign Up"
+      )}
+    </button>
+  );
+}
 const SignUpForm = () => {
   const [close, setClose] = useState(false);
   const [signUp, setSignUp] = useAuth();
@@ -30,9 +48,9 @@ const SignUpForm = () => {
         });
       }, 1000);
     }
-    return ()=>{
-      signUpState.message=''
-    }
+    return () => {
+      signUpState.message = "";
+    };
   }, [setSignUp, signUpState]);
 
   return (
@@ -129,13 +147,7 @@ const SignUpForm = () => {
                     />
                   </div>
                   <div className="relative">
-                    <button
-                      type="submit"
-                      disabled={pending}
-                      className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-indigo-500 rounded-lg transition duration-200 hover:bg-indigo-600 ease"
-                    >
-                      {pending?(<Loader/>):'Sign In'}
-                    </button>
+                    <Submit />
                   </div>
                 </div>
               </div>

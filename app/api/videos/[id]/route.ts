@@ -1,6 +1,6 @@
 
 import { NextResponse } from 'next/server';
-import prisma from '@/utils/dbclient';
+import {prisma} from '@/utils/dbclient';
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   const videoId = parseInt(params.id, 10);

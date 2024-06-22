@@ -5,12 +5,16 @@ import ResetModal from "@/components/resetmodal";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ResetFormCard from "@/components/restcard";
+import Loader from "@/components/loader";
 
 export default function Page() {
   const [close, setClose] = useState(false);
   const [resetkey, setResetKey] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const [reset, setReset] = useReset();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    setLoading(true);
     event.preventDefault();
     const response = await verifyAction(reset.email, "user");
     if (response?.message === "valid") {
@@ -18,11 +22,12 @@ export default function Page() {
     } else if (response?.message === "invalid") {
       toast.error("email doesn't exist");
     }
+    setLoading(false);
   }
   return (
     <>
       {resetkey ? (
-        <ResetFormCard role="user"/>
+        <ResetFormCard role="user" />
       ) : (
         <div className="flex items-center justify-center h-screen">
           <div className="mx-auto max-w-lg">
@@ -79,7 +84,13 @@ export default function Page() {
                 type="submit"
                 className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
               >
-                verify
+                {loading ? (
+                  <div className="flex items-center justify-center w-full">
+                    <div className="loader"></div>
+                  </div>
+                ) : (
+                  "Verify"
+                )}
               </button>
             </form>
           </div>
@@ -91,8 +102,8 @@ export default function Page() {
         handleCloseModal={() => {
           setClose(false);
         }}
-        handleReset={()=>{
-         setResetKey(true)
+        handleReset={() => {
+          setResetKey(true);
         }}
       />
       <Toaster />

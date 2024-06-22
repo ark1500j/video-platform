@@ -488,7 +488,7 @@ img {
   padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   border-top: 1px solid var(--c-border-primary);
 }
 .card-footer a {

@@ -1,6 +1,6 @@
 "use client";
 import { Navbar } from "@/components/navbar";
-import { ChevronLeft, ChevronRight, Share2Icon } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,6 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "react-share";
-import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useUrl } from "nextjs-current-url";
 type VideoData = {
@@ -103,34 +102,22 @@ export default function Page({ params }: { params: { slug: string } }) {
       {currentVideo && (
         <main className="flex flex-col items-center w-screen pt-24 mx-auto">
           <div className="flex flex-grow justify-center items-center">
-            <button className="px-4">
+
               {previousVideo && (
                 <div
-                  className="text-neutral-400 opacity-0 duration-500 hover:opacity-100 cursor-pointer self-stretch flex items-center justify-center"
+                  className="text-neutral-400  opacity-0 duration-500 hover:opacity-100 cursor-pointer self-stretch flex items-center justify-center"
                   onClick={handlePrevious}
                 >
                   <ChevronLeft size={50} />
                 </div>
               )}
-            </button>
-            <div className="sm:max-w-[50%] max-w-[70%] flex flex-shrink relative">
+  
+            <div className="sm:max-w-[50%] max-w-[70%] flex flex-shrink relative flex-col">
               <video className="w-full h-full rounded-md" controls>
                 <source src={currentVideo.url} type={currentVideo.type} />
               </video>
-            </div>
-            <button className="px-4">
-              {nextVideo && (
-                <div
-                  className="text-neutral-400 opacity-0 duration-500 hover:opacity-100 cursor-pointer self-stretch flex items-center justify-center"
-                  onClick={handleNext}
-                >
-                  <ChevronRight size={50} />
-                </div>
-              )}
-            </button>
-          </div>
-          <div className="sm:w-[50%] w-[72%] flex justify-between items-start p-2">
-            <div className="pb-2 pl-4">
+              <div className="full full flex justify-between items-start p-2">
+            <div className="pb-2">
               <h1 className="text-xl ">{currentVideo.title}</h1>
             </div>
             <div className="">
@@ -194,11 +181,20 @@ export default function Page({ params }: { params: { slug: string } }) {
               </Popover>
             </div>
           </div>
-
-          <div className="sm:w-[50%] w-[72%] flex justify-between items-start p-2 pl-4">
-            <span className="text-base text-grey-darken ml-3">
+          <div className="w-full flex justify-between items-start py-5 px-3 border border-neutral-300 rounded-md">
+            <span className="text-base text-grey-darken">
               {currentVideo.description}{" "}
             </span>
+          </div>
+            </div>
+              {nextVideo && (
+                <div
+                  className="text-neutral-400 opacity-0 duration-500 hover:opacity-100 cursor-pointer self-stretch flex items-center justify-center"
+                  onClick={handleNext}
+                >
+                  <ChevronRight size={50} />
+                </div>
+              )}
           </div>
         </main>
       )}
