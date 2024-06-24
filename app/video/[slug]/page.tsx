@@ -117,7 +117,8 @@ export default function Page({ params }: { params: { slug: string } }) {
         </div>
       )}
       {currentVideo && (
-        <main className="flex flex-col items-center w-full sm:w-screen pt-24 mx-auto">
+        <main className="flex flex-col items-center w-full sm:w-screen pt-28 mx-auto">
+          <Link href={"/video"} className="absolute top-20 left-10 flex items-center cursor-pointer text-neutral-400"><HomeIcon size={15}/>{""}<span className="">/{pathname?.split("/")[1]}</span></Link>
           <div className="flex flex-grow justify-center items-center">
             {previousVideo && (
               <div
