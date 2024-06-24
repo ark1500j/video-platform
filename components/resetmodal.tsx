@@ -90,7 +90,7 @@ const ResetModal = ({
               )}
             </div>
             <div className="pt-6 text-sm text-neutral-400">
-              a verifyication code has been sent to the email
+              a verification code has been sent to the email
             </div>
           </div>
 
