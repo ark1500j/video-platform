@@ -29,7 +29,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useUrl } from "nextjs-current-url";
 import toast from "react-hot-toast";
 interface Props {
   id: string;
@@ -39,7 +38,7 @@ interface Props {
 }
 export default function Card({ url, type, title, id }: Props) {
 
-  const { href: currentUrl, pathname } = useUrl() ?? {};
+  const currentUrl = `https://video-platform-steel.vercel.app/video/${id}`
   async function handleDelete() {
     const res = await fetch("/api/videos", {
       method: "DELETE",
