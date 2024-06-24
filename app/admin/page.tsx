@@ -60,14 +60,14 @@ export default function Page() {
           Welcome Back!
         </h1>
 
-        <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
+{/*         <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
           sunt dolores deleniti inventore quaerat mollitia?
-        </p>
+        </p> */}
 
         <form
           action={formAction}
-          className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+          className="mb-0 mt-6 space-y-4 rounded-lg p-4 pt-4 shadow-lg sm:p-6 lg:p-8"
         >
           <p className="text-center text-lg font-medium">
             Sign in to your account
