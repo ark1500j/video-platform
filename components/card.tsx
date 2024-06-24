@@ -92,7 +92,7 @@ export default function Card({ url, type, title, id }: Props) {
                         <Input
                           id="width"
                           defaultValue="100%"
-                          value={pathname}
+                          value={currentUrl}
                           className="col-span-1 h-8 outline-none focus:outline-none"
                         />
                       </div>
