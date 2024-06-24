@@ -61,7 +61,7 @@ export default function Page() {
         <div className="responsive-wrapper">
           <div className="main-header">
             <form
-              className="border border-neutral-200 rounded-lg px-0 py-2 w-full relative"
+              className="border border-neutral-200 rounded-lg px-1 sm:px-4 py-2 w-full relative"
               onSubmit={handleSubmit}
             >
               <div className="flex flex-col sm:flex-row gap-4 items-start align-baseline pb-4 w-full">
