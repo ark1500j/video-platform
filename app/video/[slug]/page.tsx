@@ -23,6 +23,7 @@ import {
 } from "react-share";
 import toast, { Toaster } from "react-hot-toast";
 import { useUrl } from "nextjs-current-url";
+import Link from "next/link";
 type VideoData = {
   id: number;
   url: string;
