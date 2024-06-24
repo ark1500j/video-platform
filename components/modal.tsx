@@ -91,14 +91,14 @@ const SignUpModal = ({ isModalOpen, handleCloseModal }: Props) => {
                   <>You entered: {auth.otp}</>
                 )}
                               <div className="text-neutral-400">
-                a verifyication code has been sent to your email
+                a verification code has been sent to your email
               </div>
               </div>
             </div>
           </div>
-          <div className="p-2">
-            a verifyication code has been sent to your email
-          </div>
+{/*           <div className="p-2">
+            a verification code has been sent to your email
+          </div> */}
         </div>
       </div>
     </div>
@@ -185,7 +185,7 @@ const SignInModal = ({ isModalOpen, handleCloseModal }: Props) => {
               </div>
             </div>
             <div className="pt-4 p-2 text-sm text-neutral-400">
-              a verifyication code has been sent to this email
+              a verification code has been sent to this email
             </div>
             {/* <div className="pt-2 text-sm text-neutral-400">
               Did not recieve email <span className="cursor-pointer">resend</span>
@@ -272,7 +272,7 @@ function AdminSignModal({ isModalOpen, handleCloseModal }: Props) {
                 )}
               </div>
               <div className="text-neutral-400 p-2">
-                a verifyication code has been sent to this email
+                a verification  code has been sent to this email
               </div>
               {/* <div className="pt-2 text-sm text-neutral-400">
               Did not recieve email <span className="cursor-pointer">resend</span>
