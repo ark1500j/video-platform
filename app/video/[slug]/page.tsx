@@ -1,6 +1,6 @@
 "use client";
 import { Navbar } from "@/components/navbar";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight ,HomeIcon} from "lucide-react";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
