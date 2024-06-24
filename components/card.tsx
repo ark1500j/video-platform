@@ -82,7 +82,7 @@ export default function Card({ url, type, title, id }: Props) {
                           className="cursor-pointer"
                           onClick={async () => {
                             await navigator.clipboard.writeText(
-                              `${currentUrl}`
+                              currentUrl
                             );
                             toast.success("copied url to clipboard");
                           }}
@@ -98,22 +98,22 @@ export default function Card({ url, type, title, id }: Props) {
                       </div>
                       <div className="grid grid-cols-4 ">
                         <div className="">
-                          <TwitterShareButton url={`${currentUrl}`}>
+                          <TwitterShareButton url={currentUrl}>
                             <TwitterIcon size={30} round />
                           </TwitterShareButton>
                         </div>
                         <div className="">
-                          <WhatsappShareButton url={`${currentUrl}`}>
+                          <WhatsappShareButton url={currentUrl}>
                             <WhatsappIcon size={32} round />
                           </WhatsappShareButton>{" "}
                         </div>
                         <div className="">
-                          <FacebookShareButton url={`${currentUrl}`}>
+                          <FacebookShareButton url={currentUrl}>
                             <FacebookIcon size={32} round />
                           </FacebookShareButton>
                         </div>
                         <div className="">
-                          <TelegramShareButton url={`${currentUrl}`}>
+                          <TelegramShareButton url={currentUrl}>
                             <TelegramIcon size={32} round />
                           </TelegramShareButton>
                         </div>
