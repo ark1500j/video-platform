@@ -159,7 +159,7 @@ export default function Page() {
 
          <Submit/>
           <Link href={"/admin/resetpswd"} className="text-sm text-indigo-400">
-            forget password?
+            forgot password?
           </Link>
         </form>
       </div>
