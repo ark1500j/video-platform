@@ -207,7 +207,7 @@ export async function otpVerifyAction(otp: string, email: string) {
 
   const token = await new SignJWT({ ...user, role: "user" })
     .setProtectedHeader({ alg: "HS256" })
-    .setExpirationTime("1 day")
+    .setExpirationTime("2 day")
     .sign(secretKey);
 
   cookies().set({
@@ -326,7 +326,7 @@ export async function OtpAdmin(otp: string, email: string) {
   const secretKey = new TextEncoder().encode(process.env.JWT_SECRET);
   const token = await new SignJWT({ ...admin, role: "admin" })
     .setProtectedHeader({ alg: "HS256" })
-    .setExpirationTime("1 day")
+    .setExpirationTime("2 day")
     .sign(secretKey);
   cookies().set({
     name: "token",
@@ -622,6 +622,7 @@ export async function changePasswordAction(
       return { message: "invalid" };
     }
   } catch (error) {
+    
     console.error("Error updating password:", error);
     return { message: "Failed to update password" };
   }

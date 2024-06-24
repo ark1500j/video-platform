@@ -52,7 +52,7 @@ const SignUpModal = ({ isModalOpen, handleCloseModal }: Props) => {
       >
         {/* Modal content */}
 
-        <div className="bg-white rounded-sm w-1/2 h-96 relative">
+        <div className="bg-white rounded-sm text-center sm:w-1/2 w-full sm:m-0 m-4 h-60 sm:h-96 relative">
           <div
             onClick={handleCloseModal}
             className="cursor-pointer absolute top-3 left-6"
@@ -96,7 +96,7 @@ const SignUpModal = ({ isModalOpen, handleCloseModal }: Props) => {
               </div>
             </div>
           </div>
-          <div className="">
+          <div className="p-2">
             a verifyication code has been sent to your email
           </div>
         </div>
@@ -144,7 +144,7 @@ const SignInModal = ({ isModalOpen, handleCloseModal }: Props) => {
       >
         {/* Modal content */}
 
-        <div className="bg-white rounded-sm w-1/2 h-96 relative">
+        <div className="bg-white rounded-sm sm:w-1/2 w-full sm:m-0 m-4 h-60 sm:h-96 text-center relative">
           <div
             onClick={handleCloseModal}
             className="cursor-pointer absolute top-3 left-6"
@@ -184,7 +184,7 @@ const SignInModal = ({ isModalOpen, handleCloseModal }: Props) => {
                 )}
               </div>
             </div>
-            <div className="pt-6 text-sm text-neutral-400">
+            <div className="pt-4 p-2 text-sm text-neutral-400">
               a verifyication code has been sent to this email
             </div>
             {/* <div className="pt-2 text-sm text-neutral-400">
@@ -234,7 +234,7 @@ function AdminSignModal({ isModalOpen, handleCloseModal }: Props) {
       >
         {/* Modal content */}
 
-        <div className="bg-white rounded-sm w-1/2 h-96 relative">
+        <div className="bg-white rounded-sm text-center w-[90%] sm:w-1/2 h-64 sm:h-96 relative">
           <div
             onClick={handleCloseModal}
             className="cursor-pointer absolute top-3 left-6"
@@ -271,8 +271,8 @@ function AdminSignModal({ isModalOpen, handleCloseModal }: Props) {
                   <>You entered:{aauth.otp} </>
                 )}
               </div>
-              <div className="text-neutral-400">
-                a verifyication code has been sent to your email
+              <div className="text-neutral-400 p-2">
+                a verifyication code has been sent to this email
               </div>
               {/* <div className="pt-2 text-sm text-neutral-400">
               Did not recieve email <span className="cursor-pointer">resend</span>

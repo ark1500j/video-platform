@@ -55,7 +55,7 @@ const ResetModal = ({
       >
         {/* Modal content */}
 
-        <div className="bg-white rounded-sm w-1/2 h-96 relative">
+        <div className="bg-white text-center rounded-sm w-[90%] sm:w-1/2 h-64 sm:h-96 relative">
           <div
             onClick={handleCloseModal}
             className="cursor-pointer absolute top-3 left-6"

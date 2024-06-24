@@ -64,8 +64,7 @@ export default function Page() {
               className="border border-neutral-200 rounded-lg px-0 py-2 w-full relative"
               onSubmit={handleSubmit}
             >
-              <div className="flex gap-4 items-start align-baseline pb-4 w-full">
-                <div className="rounded-full h-12 w-12 overflow-hidden relative"></div>
+              <div className="flex flex-col sm:flex-row gap-4 items-start align-baseline pb-4 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <div></div>
                   <label className="w-full mt-4">

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { signupAction } from "../actions";
 import toast, { Toaster } from "react-hot-toast";
-import Loader from "@/components/loader";
+
 
 let initialState = {
   message: "",
@@ -35,7 +35,6 @@ const SignUpForm = () => {
   const [close, setClose] = useState(false);
   const [signUp, setSignUp] = useAuth();
   const [signUpState, formAction] = useFormState(signupAction, initialState);
-  const { pending } = useFormStatus();
 
   useEffect(() => {
     if (signUpState.message === "valid") {
@@ -62,13 +61,13 @@ const SignUpForm = () => {
           </div>
           <Link
             href={"/"}
-            className="bg-indigo-500 p-2 rounded-sm mr-10 text-white hover:bg-indigo-600 hover:-translate-y-1 duration-500"
+            className="bg-indigo-500 p-2 rounded-sm sm:mr-10 mr-4 text-white hover:bg-indigo-600 hover:-translate-y-1 duration-500"
           >
             Sign In
           </Link>
         </div>
         <div className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-0 mr-auto mb-0 ml-auto max-w-7xl xl:px-5 lg:flex-row">
-          <div className="flex flex-col items-center w-full pt-5 pr-10 pb-20 pl-10 lg:pt-20 lg:flex-row">
+          <div className="flex flex-col-reverse items-center w-full pt-5 pr-10 pb-20 pl-10 lg:pt-20 lg:flex-row">
             <div className="w-full bg-cover relative max-w-md lg:max-w-2xl lg:w-7/12">
               <div className="flex flex-col items-center justify-center w-full h-full relative lg:pr-10">
                 <img
@@ -80,7 +79,7 @@ const SignUpForm = () => {
             </div>
             <form
               action={formAction}
-              className="w-full mt-20 mr-0 mb-0 ml-0 relative z-10 max-w-2xl lg:mt-0 lg:w-5/12"
+              className="w-[90vw] mt-20 mr-0 mb-0 ml-0 relative z-10 sm:max-w-2xl lg:mt-0 lg:w-5/12"
             >
               <div className="flex flex-col items-start justify-start pt-10 pr-10 pb-10 pl-10 bg-white shadow-2xl rounded-xl relative z-10">
                 <p className="w-full text-4xl font-medium text-center leading-snug font-serif">
@@ -153,7 +152,7 @@ const SignUpForm = () => {
               </div>
               <svg
                 viewBox="0 0 91 91"
-                className="absolute top-0 left-0 z-0 w-32 h-32 -mt-12 -ml-12 text-yellow-300 fill-current"
+                className="absolute top-0 left-0 z-0 hidden sm:block w-32 h-32 -mt-12 -ml-12 text-yellow-300 fill-current"
               >
                 <g stroke="none" strokeWidth="1" fillRule="evenodd">
                   <g fillRule="nonzero">
@@ -244,7 +243,7 @@ const SignUpForm = () => {
               </svg>
               <svg
                 viewBox="0 0 91 91"
-                className="absolute bottom-0 right-0 z-0 w-32 h-32 -mb-12 -mr-12 text-indigo-500 fill-current"
+                className="absolute bottom-0 right-0 z-0 hidden sm:block w-32 h-32 -mb-12 -mr-12 text-indigo-500 fill-current"
               >
                 <g stroke="none" strokeWidth="1" fillRule="evenodd">
                   <g fillRule="nonzero">

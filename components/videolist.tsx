@@ -10,10 +10,7 @@ const Videolist = () => {
     return response.json();
   });
 
-  return (
-    <div className="card-grid">
-      {isLoading && (
-        <>
+  if(isLoading) return (<div className="card-grid">
           <div className="card">
             <div className="w-full">
               <div className="max-w-sm rounded overflow-hidden shadow-lg animate-pulse">
@@ -24,8 +21,40 @@ const Videolist = () => {
               </div>
             </div>
           </div>
-        </>
-      )}
+          <div className="card">
+            <div className="w-full">
+              <div className="max-w-sm rounded overflow-hidden shadow-lg animate-pulse">
+                <div className="h-48 bg-gray-300"></div>
+                <div className="px-6 py-4">
+                  <div className="h-6 bg-gray-300 mb-2"></div>                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="card">
+            <div className="w-full">
+              <div className="max-w-sm rounded overflow-hidden shadow-lg animate-pulse">
+                <div className="h-48 bg-gray-300"></div>
+                <div className="px-6 py-4">
+                  <div className="h-6 bg-gray-300 mb-2"></div>                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="card">
+            <div className="w-full">
+              <div className="max-w-sm rounded overflow-hidden shadow-lg animate-pulse">
+                <div className="h-48 bg-gray-300"></div>
+                <div className="px-6 py-4">
+                  <div className="h-6 bg-gray-300 mb-2"></div>                 
+                </div>
+              </div>
+            </div>
+          </div>
+
+  </div>)
+  return (
+    <div className="card-grid">
       {data &&
         data.map((video: Video) => {
           return (

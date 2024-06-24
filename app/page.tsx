@@ -53,28 +53,28 @@ const Page = () => {
 
   return (
     <div className="bg-white relative">
-      <div className="fixed h-16 w-screen bg-white bg-opacity-85 z-20  flex items-center px-5 justify-between">
-        <div className="text-2xl">
-          <Youtube className="inline" size={35} /> NewTube
+      <div className="fixed h-16 w-screen bg-white bg-opacity-85 z-20  flex items-center px-2 sm:px-5 justify-between">
+        <div className=" text:lg sm:text-2xl flex items-center">
+          <Youtube className="inline" size={35} />{""} NewTube
         </div>
         <div className="flex">
           <Link
             href={"/signup"}
-            className="bg-indigo-500 p-2 rounded-sm mr-10 text-white hover:bg-indigo-600 hover:-translate-y-1 duration-500"
+            className="bg-indigo-500 p-1 sm:p-2 rounded-sm mr-1 sm:mr-10 text-white hover:bg-indigo-600 hover:-translate-y-1 duration-500"
           >
             Sign Up
           </Link>
           <Link
             href={"/admin"}
-            className="bg-indigo-500 p-2 rounded-sm mr-10 text-sm text-white hover:bg-indigo-600 hover:-translate-y-1 duration-500"
+            className="bg-indigo-500 p-1 sm:p-2 rounded-sm mr-1 sm:mr-10 text-sm text-white hover:bg-indigo-600 hover:-translate-y-1 duration-500"
           >
             Admin Signin
           </Link>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-0 mr-auto mb-0 ml-auto max-w-7xl xl:px-5 lg:flex-row">
-        <div className="flex flex-col-reverse items-center w-full pt-5 pr-10 pb-20 pl-10 lg:pt-20  lg:flex-row ">
-          <div className="w-full bg-cover relative max-w-md lg:max-w-2xl lg:w-7/12">
+      <div className="flex flex-col items-center justify-between pt-0 sm:pr-10 pb-0 sm:pl-10 mt-0 mr-auto mb-0 ml-auto max-w-7xl xl:px-5 lg:flex-row">
+        <div className="flex flex-col-reverse items-center w-full pt-5 px-4 sm:pr-10 pb-20 sm:pl-10 lg:pt-20  lg:flex-row ">
+          <div className="w-full bg-cover relative sm:max-w-md lg:max-w-2xl lg:w-7/12">
             <div className="flex flex-col items-center justify-center w-full h-full relative lg:pr-10">
               <img
                 src="https://res.cloudinary.com/macxenon/image/upload/v1631570592/Run_-_Health_qcghbu.png"
@@ -148,7 +148,7 @@ const Page = () => {
             </div>
             <svg
               viewBox="0 0 91 91"
-              className="absolute top-0 left-0 z-0 w-32 h-32 -mt-12 -ml-12 text-yellow-300 fill-current"
+              className="absolute top-0 left-0 z-0 sm:block hidden w-32 h-32 -mt-12 -ml-12 text-yellow-300 fill-current"
             >
               <g stroke="none" strokeWidth="1" fillRule="evenodd">
                 <g fillRule="nonzero">
@@ -239,7 +239,7 @@ const Page = () => {
             </svg>
             <svg
               viewBox="0 0 91 91"
-              className="absolute bottom-0 right-0 z-0 w-32 h-32 -mb-12 -mr-12 text-indigo-500 fill-current"
+              className="absolute bottom-0 right-0 z-0 sm:block hidden w-32 h-32 -mb-12 -mr-12 text-indigo-500 fill-current"
             >
               <g stroke="none" strokeWidth="1" fillRule="evenodd">
                 <g fillRule="nonzero">
